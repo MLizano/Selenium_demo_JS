@@ -2,44 +2,39 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const assert = require('assert');
 
-async function example() {
-     let driver = await new Builder().forBrowser('firefox').build();
+describe('testin search in Amazon', function () {
 
-     await driver.get('https://www.amazon.com');
+     it('should find a product', async function () {
+          let driver = await new Builder().forBrowser('firefox').build();
 
-     await driver.sleep(3000);
-     await driver.wait(until.elementIsVisible(driver.findElement(By.id("twotabsearchtextbox"))), 10000);
-     await driver.findElement(By.id("twotabsearchtextbox")).sendKeys('gi joe', Key.RETURN);
+          await driver.get('https://www.amazon.com');
 
-     await driver.sleep(3000);
-     let items = await driver.findElements(By.className("a-link-normal s-line-clamp-4 s-link-style a-text-normal"));
+          await driver.sleep(4000);
+          await driver.wait(until.elementIsVisible(driver.findElement(By.id("twotabsearchtextbox"))), 10000);
+          await driver.findElement(By.id("twotabsearchtextbox")).sendKeys('gi joe', Key.RETURN);
 
-     for (let i = 0; i < items.length; i++) {
+          await driver.sleep(3000);
+          let items = await driver.findElements(By.className("a-link-normal s-line-clamp-4 s-link-style a-text-normal"));
 
-          let text = (await items[i].getText()).toString();
+          for (let i = 0; i < items.length; i++) {
 
-          if (text.includes("Duke")) {
+               let text = (await items[i].getText()).toString();
 
-               await items[i].click();
-               await driver.sleep(2000);
+               if (text.includes("Duke")) {
 
-               let title = await driver.findElement(By.id("title")).getText();
+                    await items[i].click();
+                    await driver.sleep(2000);
 
-               let description = title.toString();
+                    let title = await driver.findElement(By.id("title")).getText();
 
-               
-               assert.ok(description.includes("Duke"));
-               break;
-               
+                    let description = title.toString();
 
+
+                    assert.ok(description.includes("Duke"));
+                    break;
+               }
           }
-
-     }
-
-     await driver.quit();
-
-};
-
-example();
-
+          await driver.quit();
+     })
+})
 //  run with:   node test/first_test.js
