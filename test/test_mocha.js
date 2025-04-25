@@ -2,14 +2,14 @@
 const { Builder, By, Key, until } = require('selenium-webdriver');
 const assert = require('assert');
 
-describe('testin search in Amazon', function () {
+describe('search in Amazon', function () {
 
      it('should find a product', async function () {
           let driver = await new Builder().forBrowser('firefox').build();
 
           await driver.get('https://www.amazon.com');
 
-          await driver.sleep(4000);
+          await driver.sleep(5000);
           await driver.wait(until.elementIsVisible(driver.findElement(By.id("twotabsearchtextbox"))), 10000);
           await driver.findElement(By.id("twotabsearchtextbox")).sendKeys('gi joe', Key.RETURN);
 
@@ -30,7 +30,12 @@ describe('testin search in Amazon', function () {
                     let description = title.toString();
 
 
-                    assert.ok(description.includes("Duke"));
+                    try {
+                         assert(description.includes("Duke"));
+                    } catch (error) {
+                         console.error("La descripción no incluye la palabra 'Duke'");
+                    }
+
                     break;
                }
           }

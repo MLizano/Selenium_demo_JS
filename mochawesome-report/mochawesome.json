@@ -1,0 +1,139 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 2,
+    "passes": 2,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-04-23T22:17:34.945Z",
+    "end": "2025-04-23T22:17:54.846Z",
+    "duration": 19901,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "68330a53-b120-4816-aef7-f67c7c7a6180",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "9bca9796-4d4d-40e2-8679-fd70e2e502f2",
+          "title": "search in Amazon again",
+          "fullFile": "E:\\PROJECTS - QA\\Selenium_demo_JS\\test\\test_mocha_2.js",
+          "file": "\\test\\test_mocha_2.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should find another product",
+              "fullTitle": "search in Amazon again should find another product",
+              "timedOut": null,
+              "duration": 17462,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let driver = await new Builder().forBrowser('firefox').build();\nawait driver.get('https://www.amazon.com');\nawait driver.sleep(5000);\nawait driver.wait(until.elementIsVisible(driver.findElement(By.id(\"twotabsearchtextbox\"))), 10000);\nawait driver.findElement(By.id(\"twotabsearchtextbox\")).sendKeys('gi joe', Key.RETURN);\nawait driver.sleep(3000);\nlet items = await driver.findElements(By.className(\"a-link-normal s-line-clamp-4 s-link-style a-text-normal\"));\nfor (let i = 0; i < items.length; i++) {\n     let text = (await items[i].getText()).toString();\n     if (text.includes(\"Cobra\")) {\n          await items[i].click();\n          await driver.sleep(2000);\n          let title = await driver.findElement(By.id(\"title\")).getText();\n          let description = title.toString();\n\n          try {\n               assert(description.includes(\"Duke\"));\n          } catch (error) {\n               console.error(\"La descripción no incluye la palabra 'Duke'\");\n          }\n          break;\n     }\n}\nawait driver.quit();",
+              "err": {},
+              "uuid": "b04c0ef6-f2f9-45c4-9542-e38c1a10c7a3",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b04c0ef6-f2f9-45c4-9542-e38c1a10c7a3"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 17462,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        },
+        {
+          "uuid": "5a585fc8-2106-49b9-98ae-c20e8219915f",
+          "title": "search in Amazon",
+          "fullFile": "E:\\PROJECTS - QA\\Selenium_demo_JS\\test\\test_mocha.js",
+          "file": "\\test\\test_mocha.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "should find a product",
+              "fullTitle": "search in Amazon should find a product",
+              "timedOut": null,
+              "duration": 19734,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "let driver = await new Builder().forBrowser('firefox').build();\nawait driver.get('https://www.amazon.com');\nawait driver.sleep(5000);\nawait driver.wait(until.elementIsVisible(driver.findElement(By.id(\"twotabsearchtextbox\"))), 10000);\nawait driver.findElement(By.id(\"twotabsearchtextbox\")).sendKeys('gi joe', Key.RETURN);\nawait driver.sleep(3000);\nlet items = await driver.findElements(By.className(\"a-link-normal s-line-clamp-4 s-link-style a-text-normal\"));\nfor (let i = 0; i < items.length; i++) {\n     let text = (await items[i].getText()).toString();\n     if (text.includes(\"Duke\")) {\n          await items[i].click();\n          await driver.sleep(2000);\n          let title = await driver.findElement(By.id(\"title\")).getText();\n          let description = title.toString();\n\n          try {\n               assert(description.includes(\"Duke\"));\n          } catch (error) {\n               console.error(\"La descripción no incluye la palabra 'Duke'\");\n          }\n          break;\n     }\n}\nawait driver.quit();",
+              "err": {},
+              "uuid": "34e03eb4-a72f-479a-aa41-de9f1cb425af",
+              "parentUUID": null,
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "34e03eb4-a72f-479a-aa41-de9f1cb425af"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 19734,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": null
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 0
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.1.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
